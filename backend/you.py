@@ -5,7 +5,7 @@ import PyPDF2
 openai.api_key = "sk-proj-yVoV9rJjXLmdB5haL8jNT3BlbkFJa692FJ0bCBXOkC1YPxDO"
 
 
-data_file = 'backend/data/data.txt'
+data_file = 'data/data.txt'
 
 def extract_text_from_pdf(pdf_path):
     text = ''
@@ -16,10 +16,10 @@ def extract_text_from_pdf(pdf_path):
             text += page.extract_text()
     return text
 
-pdf_path = 'backend/pdfs/new_blood_test_report.pdf'
+pdf_path = 'pdfs/new_blood_test_report.pdf'
 extracted_text = extract_text_from_pdf(pdf_path)
 
-sample_path = 'backend/pdfs/blood_test_report_no_comments_v2.pdf'
+sample_path = 'pdfs/blood_test_report_no_comments_v2.pdf'
 sample_text = extract_text_from_pdf(sample_path)
 
 # Example usage
@@ -47,13 +47,13 @@ response = openai.chat.completions.create(
 
 answers = response.choices[0].message.content.strip()
 
-print(answers)
+#print(answers)
 
 def saveResponseToFile(msg):
     with open(data_file, 'w') as file:
         for line in msg.split('\n'):
             file.write(line.strip() + '\n')
-        print('Succeeded')
+        #print('Succeeded')
 
 saveResponseToFile(answers)
 
@@ -65,12 +65,16 @@ def creatingDictionary(data_file):
             parts = line.strip().split(':')
             if len(parts) == 2:
                 key = parts[0].strip()
-                print(key)
+                #print(key)
                 value = parts[1].strip()
-                print(value)
+                #print(value)
                 # Add key-value pair to the dictionary
                 data[key] = value
     return data
 
 dict = creatingDictionary(data_file)
-print(dict)
+
+def getDict():
+    return dict
+
+#print(dict)
