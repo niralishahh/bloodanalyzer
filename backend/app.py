@@ -69,7 +69,7 @@ def get_rec():
         model="gpt-3.5-turbo",
         messages= [
         {
-            "role": "system", "content": "You are a helpful assistant so that whichever blood test results that are not unhealthy, give possible side effects and small, specific lifestyle modifications. Do not mention normal results at all. Repeat for all possible risks and bad test results."
+            "role": "system", "content": "You are a helpful assistant. Given a set of test results, focus on generating potential risks and ways to mitigate dangers only for the unhealthy or abnormal results. Omit any information related to normal test results. Provide actionable advice for each unhealthy result to help the recipient understand the potential risks and how to address them effectively."
         },
         {
             "role": "user", "content": f"Answer the following question in simple language without repeating any information from this text:{lastResponse}"
@@ -83,7 +83,6 @@ def get_rec():
     print(answer)
     INPUT_LIST = str(answer.content.strip()).split('\n')
     print(INPUT_LIST)
-    msg_print= ''
     for i in INPUT_LIST:
         print(i) 
 
@@ -93,6 +92,8 @@ def get_rec():
 def getMsgList():
     return MSG_LIST
 
+def getInputList():
+    return INPUT_LIST
 
 if __name__ == '__main__':
     app.run(debug=True)
