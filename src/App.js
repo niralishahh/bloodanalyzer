@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -11,13 +12,15 @@ function AskQuestion() {
     try {
       //const fixedQuestion = "What does a Cholesterol 240 mg/dL mean for a male over 50";
       const response = await axios.post('http://127.0.0.1:5000/ask_question');
-      //
+
         
         
           // Access the content directly if the response is a JSON object
       const answer = response.data.answer
       //console.log(answer)
       const match = answer.match(/content='([^']*)'/);
+      const simplfy = await axios.post('http://127.0.0.1:5000/get_string', {data: match});
+
       //console.log(match)
       if (match) {
         const content = match[1]; // Use 'let' to allow reassignment
@@ -79,3 +82,5 @@ function AskQuestion() {
 }
 
 export default AskQuestion;
+
+*/

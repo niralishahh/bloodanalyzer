@@ -46,12 +46,12 @@ def ask_question():
     answer = response.choices[0].message
     #answer = re.search(r"content='(.*?)'", str(response))
     
-    print(answer)
+    #print(answer)
     MSG_LIST = str(answer.content.strip()).split('\n')
-    print(MSG_LIST)
+    #print(MSG_LIST)
     msg_print= ''
-    for i in MSG_LIST:
-        print(i) 
+    #for i in MSG_LIST:
+    #    print(i) 
     
 
     return jsonify({"answer": str(answer)})
@@ -63,7 +63,7 @@ def ask_question():
 def get_rec():
     data = request.json
     lastResponse = data.get('lastR')
-    print('')
+    #print('')
     # You are a helpful assistant that mentions any alarming results and gives reccomendations based on {lastResponse}, while also not repeating that text, that are not at the normal level, give home remidies, and potential risks
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -83,8 +83,8 @@ def get_rec():
     print(answer)
     INPUT_LIST = str(answer.content.strip()).split('\n')
     print(INPUT_LIST)
-    for i in INPUT_LIST:
-        print(i) 
+    #for i in INPUT_LIST:
+    #    print(i) 
 
     return jsonify({"answer": str(answer)})
 
@@ -95,6 +95,18 @@ def getMsgList():
 def getInputList():
     return INPUT_LIST
 
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+
+    
+
+
+
+
 
