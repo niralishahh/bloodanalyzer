@@ -97,7 +97,8 @@ code {
   height: 600px;
   display: flex;
   width: 600px;
-  padding: 3%;
+  padding-left: 5%; padding-right: 5%; padding-top: 3%; padding-bottom: 3%;
+  overflow-y: auto;
 }
 
 .padding{

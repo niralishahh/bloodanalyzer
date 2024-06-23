@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 import openai
 import you
+import os
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # This will enable CORS for all routes and origins
@@ -9,6 +10,31 @@ CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # This will 
 openai.api_key = "sk-proj-sjbVpImSlCB7ohOk6yZfT3BlbkFJcAuV0pHxbojoSWFEKdTm"
 MSG_LIST = []
 INPUT_LIST= []
+
+UPLOAD_FOLDER = 'pdfs'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    file = request.files['file']
+    pdf_name=file.filename
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    if file:
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(filepath)
+        # Perform operations on the file here
+        new_file="name.txt"
+        with open(new_file, "w") as name:
+            name.write(pdf_name)
+        return jsonify({'message': 'File successfully uploaded'}), 200
+    
+
 
 
 @app.route('/ask_question', methods=['POST'])
@@ -96,7 +122,7 @@ def getInputList():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
 
 #ask_question()
 #get_rec()
