@@ -4,39 +4,54 @@ import './index.css';
 import App from './App';
 import DragandDrop from './DragandDrop';
 import reportWebVitals from './reportWebVitals';
+import myImage from './green_logo.jpg';
 
+const Header = () =>{
+  return (
+    <header className="header">
+      <img src={myImage} alt="Logo" className="logo"/>
+      <h3>Fresh Hackers</h3>
+    </header>
+  )
+}
 
 const MyApp = ({ onGenerate }) =>{
   return (
     <><div className='upload'>
       <h1>Upload Medical Records</h1>
+
+      <div className='container2'>
+        <div className='vertical2'>
+          
+          <span>Name:</span> 
+          <span>Age: </span>
+          <span>Weight:</span> 
+          <span>Height:</span>
+          <span>Sex:</span> 
+        </div>
+
+        <div className='vertical'>
+          <input type='text' name='name'></input>
+          <input type='int' name='age'></input>
+          <input type='int' name='weight'></input>
+          <input type='int' name='height'></input>
+          <select name='sex'>
+            <option value='female'>Female</option>
+            <option value='male'>Male</option>
+          </select>
+        </div>
+      </div>
+
+      <br></br>
+
       <DragandDrop />
-
-      <div>
-        <div>
-          Name: 
-        </div>
-        <div>
-          <input type='text'></input>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          Age:
-        </div>
-
-        <div>
-        </div>
-      </div>
-
-      <button className='generate' onClick={onGenerate}>Generate</button>
+      
     </div>
     </>
   );
 };
 
-const Initial = () =>{
+const Initial = ({onGenerate}) =>{
   return(
     <div className='results'>
       <div className ='padding'>
@@ -45,6 +60,8 @@ const Initial = () =>{
 
         <p>Leveraging unique AI algorithms, Blood analyzes and simplifies your medical records in one click. </p>
         <p className='red'>*We are not medical professionals.</p>
+
+        <button className='generate' onClick={onGenerate}>Generate</button>
       </div>
     </div>
   );
@@ -92,12 +109,9 @@ const MainComponent = () => {
 
   return (
     <div className="container">
-      <MyApp onGenerate={handleGenerateClick} />
-      {showNewComponent ? (
-        <NewComponent />
-      ) : (
-        <Initial />
-      )}
+      <MyApp />
+      {!showNewComponent && <Initial onGenerate={handleGenerateClick} />}
+      {showNewComponent && <NewComponent />}
     </div>
   );
 }
@@ -105,7 +119,8 @@ const MainComponent = () => {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <MainComponent />
+    <Header />
+    <MainComponent />
   </React.StrictMode>
 );
 

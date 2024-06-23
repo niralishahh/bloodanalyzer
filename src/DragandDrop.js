@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 import './index.css';
 
 const FileUpload = () => {
@@ -52,7 +53,13 @@ const FileUpload = () => {
       {preview && (
         <div style={{ marginTop: '20px' }}>
           <h3>File Preview:</h3>
-          <img src={preview} alt="file preview" className='image' />
+          <iframe
+            src={preview}
+            frameBorder="0"
+            width="100%"
+            height="600px"
+            title="PDF Preview">
+          </iframe>
         </div>
       )}
     </div>
