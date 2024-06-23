@@ -1,8 +1,8 @@
-Hemoglobin: 12.0 g/dL
-WBC: 6.0 x10^9/L
-Platelets: 220 x10^9/L
-Cholesterol: 210 mg/dL
-Glucose: 140 mg/dL
-Vitamin D: 25 ng/mL
-RBC: 4.5 x10^12/L
-Iron: 55 µg/dL
+Hemoglobin: 14.5 g/dL
+WBC: 8.0 x10^9/L
+Platelets: 200 x10^9/L
+Cholesterol: 180 mg/dL
+Glucose: 110 mg/dL
+Vitamin D: 35 ng/mL
+RBC: 4.8 x10^12/L
+Iron: 75 µg/dL

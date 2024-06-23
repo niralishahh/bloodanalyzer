@@ -3,16 +3,15 @@ from flask_cors import CORS
 import openai
 import you
 
-# app = Flask(__name__)
-# CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # This will enable CORS for all routes and origins
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # This will enable CORS for all routes and origins
 
 openai.api_key = "sk-proj-sjbVpImSlCB7ohOk6yZfT3BlbkFJcAuV0pHxbojoSWFEKdTm"
 MSG_LIST = []
 INPUT_LIST= []
-ANSWER = ''
 
 
-# @app.route('/ask_question', methods=['POST'])
+@app.route('/ask_question', methods=['POST'])
 def ask_question():
     #data = request.json
     #question = data.get('question')
@@ -35,32 +34,34 @@ def ask_question():
         model="gpt-3.5-turbo",
         messages= [
         {
-            "role": "system", "content": "You are a helpful assistant that answers the questions with details on what each test means in a numbered list with each number on a different line. Replace all the \n with \n\n"
+            "role": "system", "content": "You are a helpful assistant that answers the questions with details on what each test means in a numbered list with each number on a different line. Limit your response to 200 characters."
             #in bullet points for each type of test
         }, 
         {
             "role": "user", "content": f"Answer the following question in simple language:\n{questions}"
         }
+        
         ]
+        
     )
     #answer = response['choices'][0]['message']['content'].strip()
     answer = response.choices[0].message
     #answer = re.search(r"content='(.*?)'", str(response))
     
-    # print(answer)
+    print(answer)
     ANSWER = str(answer.content.strip())
     MSG_LIST = str(answer.content.strip()).split('\n')
-    print(MSG_LIST)
+    #print(MSG_LIST)
 
-    # return jsonify({"answer": str(answer)})
+    return jsonify({"answer": str(answer)})
 
 #print(you.getDict())
 
 
-# @app.route('/get_rec', methods=['POST'])
+@app.route('/get_rec', methods=['POST'])
 def get_rec():
-    #data = request.json
-    #lastResponse = data.get('lastR')
+    data = request.json
+    lastResponse = data.get('lastR')
     #print('')
     # You are a helpful assistant that mentions any alarming results and gives reccomendations based on {lastResponse}, while also not repeating that text, that are not at the normal level, give home remidies, and potential risks
     response = openai.chat.completions.create(
@@ -70,20 +71,21 @@ def get_rec():
             "role": "system", "content": "You are a helpful assistant. Given a set of test results, focus on generating potential risks and ways to mitigate dangers only for the unhealthy or abnormal results. Omit any information related to normal test results. Provide actionable advice for each unhealthy result to help the recipient understand the potential risks and how to address them effectively."
         },
         {
-            "role": "user", "content": f"Answer the following question in simple language without repeating any information from this text:{ANSWER}"
+            "role": "user", "content": f"Answer the following question in simple language without repeating any information from this text:{lastResponse}"
         }
         ]
+
     )
     #answer = response['choices'][0]['message']['content'].strip()
     answer = response.choices[0].message
-    print()
-    print(answer)
+    #print()
+    #print(answer)
     #answer = re.search(r"content='(.*?)'", str(response))
     
-    INPUT_LIST = str(answer.content.strip()).split('\n')
-    print(INPUT_LIST)
+    #INPUT_LIST = str(answer.content.strip()).split('\n')
+    #print(INPUT_LIST)
 
-    # return jsonify({"answer": str(answer)})
+    return jsonify({"answer": str(answer)})
 
 
 def getMsgList():
@@ -92,11 +94,11 @@ def getMsgList():
 def getInputList():
     return INPUT_LIST
 
-'''
+
 if __name__ == '__main__':
     app.run(debug=True)
-'''
-ask_question()
-get_rec()
+
+#ask_question()
+#get_rec()
 
 

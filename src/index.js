@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import AskQuestion from './App';
 import DragandDrop from './DragandDrop';
 import ImagePDF from './ImagePDF';
 import reportWebVitals from './reportWebVitals';
 import myImage from './green_logo.jpg';
+//import app from '../backend/app.py';
 
 const Header = () => {
   return (
@@ -67,28 +68,10 @@ const Initial = ({ onGenerate }) => {
 };
 
 const NewComponent = () => {
+
   return (
-    <div className="results2">
-      <div className="padding">
-        <h1>Results:</h1>
-        <h3>Red Flags:</h3>
-        <p>
-          MCH: Your MCH is too low. This means that you are going to die soon <br />
-          RBC: RBC is too high at 100.68. Make sure your oxygen level is fine.
-        </p>
-        <h3>Next Steps:</h3>
-        <p>
-          1. Try eating more. <br />
-          2. Maybe don’t eat more. <br />
-          3. Actually drink more water. <br />
-        </p>
-        <h3>Extra Links:</h3>
-        <p>
-          1. <a href="https://www.webmd.com">Webmd.com</a> <br />
-          2. <a href="https://www.you.com">You.com</a> <br />
-          3. <a href="https://www.help.com">Help.com</a> <br />
-        </p>
-      </div>
+    <div className='results2'>
+      <AskQuestion />
     </div>
   );
 };
