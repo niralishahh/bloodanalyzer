@@ -19,33 +19,32 @@ const Header = () => {
 const MyApp = ({ onFileUpload, filePreview }) => {
   return (
     <div className="upload">
-      <h1>Upload Medical Records</h1>
+      <h1 className='underline'>Upload Medical Records</h1>
 
-      <div className="container2">
+      {/* <div className="container2">
         <div className="vertical2">
           <span>Name:</span>
           <span>Age: </span>
-          <span>Weight:</span>
-          <span>Height:</span>
           <span>Sex:</span>
         </div>
 
         <div className="vertical">
           <input type="text" name="name"></input>
           <input type="number" name="age"></input>
-          <input type="number" name="weight"></input>
-          <input type="number" name="height"></input>
           <select name="sex">
             <option value="female">Female</option>
             <option value="male">Male</option>
           </select>
         </div>
-      </div>
+  </div> */}
 
       <br />
 
       <DragandDrop onFileUpload={onFileUpload} />
       <ImagePDF preview={filePreview} />
+
+      <br></br><br></br><br></br>
+      
     </div>
   );
 };

@@ -10,11 +10,11 @@ const ImagePDF = ({ preview, width}) => {
           src={preview}
           frameBorder="0"
           width={width}
-          height="600px"
+          height="350px"
           title="PDF Preview"
         ></iframe>
       ) : (
-        <p>No file uploaded yet.</p>
+        ""
       )}
     </div>
   );
