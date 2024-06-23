@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'pdfs'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 

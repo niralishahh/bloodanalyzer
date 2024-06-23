@@ -8,12 +8,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
-<<<<<<< HEAD
     "pdfjs-dist": "^3.4.120",
-=======
-
     "dotenv": "^16.4.5",
->>>>>>> 9e6c4fbfba96e7efe34d9b4b65c2e3f3a94412f5
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
