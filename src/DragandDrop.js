@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
+import React, { useState } from 'react';
 import './index.css';
 
-const FileUpload = () => {
-  const [file, setFile] = useState(null);
+const DragandDrop = ({ onFileUpload }) => {
   const [preview, setPreview] = useState(null);
 
   const handleDrop = (e) => {
     e.preventDefault();
     const droppedFile = e.dataTransfer.files[0];
-    setFile(droppedFile);
-    setPreview(URL.createObjectURL(droppedFile));
+    const previewURL = URL.createObjectURL(droppedFile);
+    setPreview(previewURL);
+    onFileUpload(previewURL);
   };
 
   const handleDragOver = (e) => {
@@ -19,8 +18,9 @@ const FileUpload = () => {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-    setPreview(URL.createObjectURL(selectedFile));
+    const previewURL = URL.createObjectURL(selectedFile);
+    setPreview(previewURL);
+    onFileUpload(previewURL);
   };
 
   const handleClick = () => {
@@ -40,7 +40,7 @@ const FileUpload = () => {
           textAlign: 'center',
           cursor: 'pointer',
         }}
-        className='draganddrop'
+        className="draganddrop"
       >
         Drag 'n' Drop, or click to select a file
         <input
@@ -50,20 +50,8 @@ const FileUpload = () => {
           id="fileInput"
         />
       </div>
-      {preview && (
-        <div style={{ marginTop: '20px' }}>
-          <h3>File Preview:</h3>
-          <iframe
-            src={preview}
-            frameBorder="0"
-            width="100%"
-            height="600px"
-            title="PDF Preview">
-          </iframe>
-        </div>
-      )}
     </div>
   );
 };
 
-export default FileUpload;
+export default DragandDrop;
