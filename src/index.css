@@ -1,13 +1,181 @@
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  margin: 0px;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #faf3de;
+
+}
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.generate {
+  background-color: #e95159;
+  border-radius: 100px;
+  box-shadow: rgba(187, 44, 108, 0.2) 0 -25px 18px -14px inset,rgba(187, 44, 108, .15) 0 1px 2px,rgba(187, 44, 108, .15) 0 2px 4px,rgba(187, 44, 108, .15) 0 4px 8px,rgba(187, 44, 108, .15) 0 8px 16px,rgba(187, 44, 108, .15) 0 16px 32px;
+  color: rgb(255, 208, 208);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 5%;
+  animation: bounce 0.5s cubic-bezier(0.8,0,1,1) infinite alternate;
+}
+
+.generate:hover {
+  box-shadow: rgba(187, 44, 108,.35) 0 -25px 18px -14px inset,rgba(187, 44, 108,.25) 0 1px 2px,rgba(187, 44, 108,.25) 0 2px 4px,rgba(187, 44, 108,.25) 0 4px 8px,rgba(187, 44, 108,.25) 0 8px 16px,rgba(187, 44, 108,.25) 0 16px 32px;
+  
+}
+
+.image{
+  height: 100px;
+  width: 200px;
+}
+
+.upload{
+  padding: 20px;
+  width: auto;
+  height: 600px;
+  margin-top: 0;
+  float: left;
+}
+
+.upload .pdf{
+  width: 100%;
+}
+
+.draganddrop{
+  border-radius: 10px;
+}
+
+.results{
+  border-radius: 10px;
+  background-color: #d3d3d3;
+  text-align: center;
+  float: left;
+  text-align: left;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding: 3%;
+  width: 600px;
+  background-image: url('light-red.avif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.results2{
+  border-radius: 10px;
+  background-color: #d3d3d3;
+  text-align: center;
+  float: left;
+  text-align: left;
+  height: 600px;
+  display: flex;
+  width: 600px;
+  padding: 3%;
+}
+
+.padding{
+  flex-direction: column;
+}
+
+.red{
+  color: red;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  gap: 85px;
+  width: 100%;
+  margin-left: 12%;
+}
+
+.vertical{
+  display: flex;
+  flex-direction: column;
+  align: center;
+  gap: 10px;
+}
+
+.vertical2{
+  display: flex;
+  flex-direction: column;
+  align: center;
+  gap: 13px;
+}
+
+.container2{
+  display: flex;
+  justify-content: left;
+  flex-direction:row;
+  margin-top: 5%;
+  gap: 15px;
+
+}
+
+.pdf-image{
+  height: 175px;
+}
+
+.logo{
+  margin-left: 0;
+  height: 90px;
+  width: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* CSS */
+.upload-button{
+  border-radius: 20px;
+  background-color: rgb(255, 208, 208);
+  color: #e95159;
+  border: none;
+  padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.underline{
+  border-bottom: 2px solid #e95159;
+  padding-bottom: 5px; /* Adjust the spacing between the text and the underline */
+}
+
+
+
+@keyframes bounce {
+  100% {
+      transform: translateY(10px);
+  }
+}
+

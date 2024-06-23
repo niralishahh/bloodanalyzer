@@ -1,4 +1,7 @@
-/*
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,23 +13,24 @@ function AskQuestion() {
 
   const handleSubmit = async () => {
     try {
+      console.log("hi")
+
       //const fixedQuestion = "What does a Cholesterol 240 mg/dL mean for a male over 50";
       const response = await axios.post('http://127.0.0.1:5000/ask_question');
-
+      //
         
         
           // Access the content directly if the response is a JSON object
       const answer = response.data.answer
       //console.log(answer)
       const match = answer.match(/content='([^']*)'/);
-      const simplfy = await axios.post('http://127.0.0.1:5000/get_string', {data: match});
-
       //console.log(match)
       if (match) {
         const content = match[1]; // Use 'let' to allow reassignment
         // content = content.replaceAll('/n', '<br>');
         //content = content.replaceAll('\n\n', '<br><br>');
         console.log(content);
+        //const cleanContent = content.replaceAll('\n\n', '<br></br>');
         setMessage(content)
       //      // Use `content` as needed
       //} else {
@@ -49,6 +53,7 @@ function AskQuestion() {
       if (match2) {
         const content2 = match2[1];
         console.log(content2);
+        //const cleanContent2 = content2.replaceAll('\n\n', '<br></br>');
         setMessage2(content2)
       //      // Use `content` as needed
       //} else {
@@ -61,26 +66,36 @@ function AskQuestion() {
         
       
     };
-    // Use useEffect to call handleAdd when message is updated
-  useEffect(() => {
-    if (message) {
-      handleAdd();
-    }
-  }, [message]);
+    useEffect(() => {
+      if (message){
+        handleAdd();
+      }
+    }, [message]);
+  
+
+
 
 
     return (
+       
         <div>
-            <h1>Get Summary</h1>
-            <button onClick = {handleSubmit}>Submit</button>
-            {{message} && <p>{message}</p>}
-            {{message2} && <p>{message2}</p>}
+          <button onClick = {handleSubmit}>Click to get Result Summary</button>
+          <h2>Summary</h2>
+          {{message} && <p>{message}</p>}
+          {{message2} && <p>{message2}</p>}
             
-            
+          
         </div>
+    
     );
 }
 
 export default AskQuestion;
 
-*/
+
+
+
+
+
+
+

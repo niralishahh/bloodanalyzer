@@ -15,8 +15,11 @@ def extract_text_from_pdf(pdf_path):
             page = pdf_reader.pages[page_num]
             text += page.extract_text()
     return text
-
-pdf_path = 'pdfs/new_blood_test_report.pdf'
+with open("name.txt","r") as file:
+    content=file.read()
+content=content.replace(" ", "_")
+pdf_path = f'pdfs/{content}'
+print(pdf_path)
 extracted_text = extract_text_from_pdf(pdf_path)
 
 sample_path = 'pdfs/blood_test_report_no_comments_v2.pdf'

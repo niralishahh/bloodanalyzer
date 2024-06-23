@@ -18,7 +18,7 @@ def ask_question():
     #print("this")
     bt_dictionary = you.getDict() 
     #length = len(bt_dictionary)
-    questions = '';
+    questions = ''
     for key in bt_dictionary.keys():
         question = f"What does a " + key + " value of " + bt_dictionary[key] + " mean for a male over 50"
         #question = f"Is " + bt_dictionary[key] + " a normal value for" + key  + " for a male over 50. And what are the normal ranges for " + key
@@ -34,18 +34,21 @@ def ask_question():
         model="gpt-3.5-turbo",
         messages= [
         {
-            "role": "system", "content": "You are a helpful assistant that answers the questions with details on what each test means in a numbered list with each number on a different line. Replace all the \n with \n\n"
+            "role": "system", "content": "You are a helpful assistant that answers the questions with details on what each test means in a numbered list with each number on a different line. Limit your response to 200 characters."
             #in bullet points for each type of test
         }, 
         {
             "role": "user", "content": f"Answer the following question in simple language:\n{questions}"
         }
+        
         ]
+        
     )
     #answer = response['choices'][0]['message']['content'].strip()
     answer = response.choices[0].message
     #answer = re.search(r"content='(.*?)'", str(response))
     
+
     #print(answer)
     MSG_LIST = str(answer.content.strip()).split('\n')
     #print(MSG_LIST)
@@ -53,6 +56,11 @@ def ask_question():
     #for i in MSG_LIST:
     #    print(i) 
     
+
+    print(answer)
+    ANSWER = str(answer.content.strip())
+    MSG_LIST = str(answer.content.strip()).split('\n')
+    #print(MSG_LIST)
 
     return jsonify({"answer": str(answer)})
 
@@ -75,16 +83,23 @@ def get_rec():
             "role": "user", "content": f"Answer the following question in simple language without repeating any information from this text:{lastResponse}"
         }
         ]
+
     )
     #answer = response['choices'][0]['message']['content'].strip()
     answer = response.choices[0].message
+    #print()
+    #print(answer)
     #answer = re.search(r"content='(.*?)'", str(response))
     
+
     print(answer)
     INPUT_LIST = str(answer.content.strip()).split('\n')
     print(INPUT_LIST)
     #for i in INPUT_LIST:
     #    print(i) 
+
+    #INPUT_LIST = str(answer.content.strip()).split('\n')
+    #print(INPUT_LIST)
 
     return jsonify({"answer": str(answer)})
 
@@ -94,6 +109,7 @@ def getMsgList():
 
 def getInputList():
     return INPUT_LIST
+
 
 
 
@@ -108,5 +124,11 @@ if __name__ == '__main__':
 
 
 
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+#ask_question()
+#get_rec()
 
 
