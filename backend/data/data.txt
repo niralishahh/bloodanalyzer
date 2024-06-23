@@ -1,8 +1,10 @@
-Hemoglobin: 14.5 g/dL
-WBC: 8.0 x10^9/L
-Platelets: 200 x10^9/L
-Cholesterol: 180 mg/dL
-Glucose: 110 mg/dL
-Vitamin D: 35 ng/mL
-RBC: 4.8 x10^12/L
-Iron: 75 µg/dL
+Age: 45
+Sex: Male
+Hemoglobin: 8.0 g/dL
+WBC: 20.0 x10^9/L
+Platelets: 100 x10^9/L
+Cholesterol: 300 mg/dL
+Glucose: 250 mg/dL
+Vitamin D: 10 ng/mL
+RBC: 3.0 x10^12/L
+Iron: 20 µg/dL

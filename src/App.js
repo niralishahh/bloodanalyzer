@@ -1,6 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useTypewriter from './useTypeWriter';
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
 
 function AskQuestion() {
   const [rawMessage, setRawMessage] = useState('');
@@ -45,7 +49,9 @@ function AskQuestion() {
 
   useEffect(() => {
     if (rawMessage && rawMessage2) {
-      setCombinedMessage(`${rawMessage}<br><br>${rawMessage2}`);
+      setCombinedMessage(`${rawMessage}<br>
+      <h4>The number corresponds to the row number assigned in the blood test</h4>
+      <br>${rawMessage2}`);
     }
   }, [rawMessage, rawMessage2]);
 
@@ -53,11 +59,13 @@ function AskQuestion() {
 
   return (
     <div>
-      <button onClick={handleSubmit}>Click to get Result Summary</button>
-      <h2>Summary</h2>
+      <button onClick={handleSubmit} className="click-result">Get Result Summary!</button>
       {combinedMessage && <p dangerouslySetInnerHTML={{ __html: messageWithTypewriterEffect }}></p>}
     </div>
   );
 }
 
 export default AskQuestion;
+
+
+

@@ -5,14 +5,16 @@ import AskQuestion from './App';
 import DragandDrop from './DragandDrop';
 import ImagePDF from './ImagePDF';
 import reportWebVitals from './reportWebVitals';
-import myImage from './green_logo.jpg';
+import myImage from './simplymed.jpg'
 //import app from '../backend/app.py';
 
 const Header = () => {
   return (
     <header className="header">
-      <img src={myImage} alt="Logo" className="logo" />
-      <h3>Fresh Hackers</h3>
+      <div className="logo-image">
+        <img src={myImage} alt="Logo" className="logo" />
+        <h3 className='simplymed'>SimplyMed.</h3>
+      </div>
     </header>
   );
 };
@@ -57,7 +59,7 @@ const Initial = ({ onGenerate }) => {
         <h1>
           Discover your results with <br /> one click.
         </h1>
-        <p>Leveraging unique AI algorithms, Blood analyzes and simplifies your medical records in one click.</p>
+        <p>Leveraging AI, SimplyMed analyzes and simplifies your blood test reports!</p>
         <p className="red">*We are not medical professionals.</p>
         <button className="generate" onClick={onGenerate}>
           Generate

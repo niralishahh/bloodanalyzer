@@ -89,16 +89,18 @@ code {
 }
 
 .results2{
-  border-radius: 10px;
+  border-radius: 25px;
   background-color: #d3d3d3;
-  text-align: center;
   float: left;
-  text-align: left;
   height: 600px;
   display: flex;
   width: 600px;
-  padding-left: 5%; padding-right: 5%; padding-top: 3%; padding-bottom: 3%;
+  padding-left: 10%; padding-right: 10%; padding-top: 3%; padding-bottom: 3%;
   overflow-y: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url('backgroundimage2.jpg');
 }
 
 .padding{
@@ -146,14 +148,21 @@ code {
 
 .logo{
   margin-left: 0;
-  height: 90px;
+  height: 80px;
   width: auto;
 }
 
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  margin-top: 25px; margin-left: 25px;
+  color:#a0262c
+}
+
+.logo-image{
+  display: flex;
+  float: left;
 }
 
 /* CSS */
@@ -172,6 +181,37 @@ code {
   padding-bottom: 5px; /* Adjust the spacing between the text and the underline */
 }
 
+.click-result{
+  background-color: #e95159;
+  border-radius: 100px;
+  box-shadow: rgba(187, 44, 108, 0.2) 0 -25px 18px -14px inset,rgba(187, 44, 108, .15) 0 1px 2px,rgba(187, 44, 108, .15) 0 2px 4px,rgba(187, 44, 108, .15) 0 4px 8px,rgba(187, 44, 108, .15) 0 8px 16px,rgba(187, 44, 108, .15) 0 16px 32px;
+  color: rgb(255, 208, 208);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 15px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 5%;
+  margin-left: 210px;
+}
+
+.click-result:hover {
+  box-shadow: rgba(187, 44, 108,.35) 0 -25px 18px -14px inset,rgba(187, 44, 108,.25) 0 1px 2px,rgba(187, 44, 108,.25) 0 2px 4px,rgba(187, 44, 108,.25) 0 4px 8px,rgba(187, 44, 108,.25) 0 8px 16px,rgba(187, 44, 108,.25) 0 16px 32px;
+  
+}
+
+.simplymed{
+  font-size: 20pt;
+  margin-left: 25px;
+}
+
 
 
 @keyframes bounce {
@@ -179,4 +219,5 @@ code {
       transform: translateY(10px);
   }
 }
+
 
