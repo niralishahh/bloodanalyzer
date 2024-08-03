@@ -1,5 +1,5 @@
-Age: 45
-Sex: Male
+45
+Male
 Hemoglobin: 8.0 g/dL
 WBC: 20.0 x10^9/L
 Platelets: 100 x10^9/L
