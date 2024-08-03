@@ -9,6 +9,8 @@ function AskQuestion() {
   //const [question, setQuestion] = useState('');
   const [message, setMessage] = useState('');
   const [message2, setMessage2] = useState('');
+  const [message3, setMessage3] = useState('');
+
 
 
   const handleSubmit = async () => {
@@ -71,7 +73,30 @@ function AskQuestion() {
         handleAdd();
       }
     }, [message]);
-  
+    const handleInfo = async () => {
+      try{
+          //const fixedQuestion = "What does a Cholesterol 240 mg/dL mean for a male over 50";
+        const response = await axios.post('http://127.0.0.1:5000/get_rec', { lastR: message });
+        const answer3 = response.data.answer
+        console.log(answer3)
+        const match2 = answer3.match(/content='([^']*)'/);
+        //console.log(match)
+        if (match2) {
+          const content3 = match3[1];
+          console.log(content3);
+          //const cleanContent2 = content2.replaceAll('\n\n', '<br></br>');
+          setMessage2(content3)
+        //      // Use `content` as needed
+        //} else {
+        //  console.log("Content not found");
+        }
+      }
+      catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+      }
+          
+        
+      };
 
 
 
@@ -81,8 +106,10 @@ function AskQuestion() {
         <div>
           <button onClick = {handleSubmit}>Click to get Result Summary</button>
           <h2>Summary</h2>
+          <button onClick = {handleInfo}>Click to get Information about The Medical Tests</button>
           {{message} && <p>{message}</p>}
           {{message2} && <p>{message2}</p>}
+          {{message3} && <p>{message3}</p>}
             
           
         </div>

@@ -1,37 +1,20 @@
-from flask import Flask, request, jsonify
-import requests
+import asyncio
+import aiohttp
+import ssl
+import certifi
 
-app = Flask(__name__)
+from lmnt.api import Speech
 
-HUME_API_KEY = 'agGNLkh7JsFU8fRWLQSUizHM7aEcIdrWaXXZr3J4cNvohjA6'
-HUME_API_URL = 'https://api.hume.ai/v1/synthesize'
+LMNT_API_KEY = '7991857ac4ec4f01a355ac46b659010b'  # fill in your API key here
 
-@app.route('/synthesize', methods=['POST'])
-def synthesize():
-    data = request.json
-    text = data.get('text')
+async def main():
+    ssl_context = ssl.create_default_context(cafile=certifi.where())
+    connector = aiohttp.TCPConnector(ssl=ssl_context)
     
-    if not text:
-        return jsonify({"error": "Text is required"}), 400
+    async with aiohttp.ClientSession(connector=connector) as session:
+        async with Speech(LMNT_API_KEY, session=session) as speech:
+            synthesis = await speech.synthesize('Hello, world.', voice='lily', format='wav')
+            with open('output.wav', 'wb') as f:
+                f.write(synthesis['audio'])
 
-    headers = {
-        'Authorization': f'Bearer {HUME_API_KEY}',
-        'Content-Type': 'application/json'
-    }
-
-    payload = {
-        "text": text,
-        "voice": "empathetic"
-    }
-
-    response = requests.post(HUME_API_URL, headers=headers, json=payload)
-
-    if response.status_code != 200:
-        return jsonify({"error": "Failed to synthesize speech"}), 500
-
-    audio_url = response.json().get('audio_url')
-
-    return jsonify({"audio_url": audio_url})
-
-if __name__ == '__main__':
-    app.run(debug=True)
+asyncio.run(main())

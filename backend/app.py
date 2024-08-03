@@ -16,11 +16,14 @@ def ask_question():
     #data = request.json
     #question = data.get('question')
     #print("this")
-    bt_dictionary = you.getDict() 
+    bt_dictionary = you.getDict()
+    list_info = you.get_age_sex()
+    age =list_info[0]
+    sex = list_info[1] 
     #length = len(bt_dictionary)
     questions = ''
     for key in bt_dictionary.keys():
-        question = f"What does a " + key + " value of " + bt_dictionary[key] + " mean for a male over 50"
+        question = f"What does a " + key + " value of " + bt_dictionary[key] + " mean for a " + sex + " " + age  +   " years old"
         #question = f"Is " + bt_dictionary[key] + " a normal value for" + key  + " for a male over 50. And what are the normal ranges for " + key
 
         #print(question)
@@ -102,6 +105,58 @@ def get_rec():
     #print(INPUT_LIST)
 
     return jsonify({"answer": str(answer)})
+
+@app.route('/get_info', methods = ['POST'])
+def get_info():
+    bt_dictionary = you.getDict()
+    list_info = you.get_age_sex() 
+    #length = len(bt_dictionary)
+    questions = ''
+    for key in bt_dictionary.keys():
+        question = f"What does " + bt_dictionary[key] + " test check and test for"
+        #question = f"Is " + bt_dictionary[key] + " a normal value for" + key  + " for a male over 50. And what are the normal ranges for " + key
+
+        #print(question)
+        #need to add the input for gender and age
+        #questions.append(question)
+        questions = questions + question
+    #questions_string = ' '.join(questions)
+
+    
+    response = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages= [
+        {
+            "role": "system", "content": "You are a helpful assistant that answers the questions with details on what each test does and how important the test is for the body in a numbered list with each number on a different line. Limit your response to 200 characters."
+            #in bullet points for each type of test
+        }, 
+        {
+            "role": "user", "content": f"Answer the following question in simple language:\n{questions}"
+        }
+        
+        ]
+        
+    )
+    #answer = response['choices'][0]['message']['content'].strip()
+    answer = response.choices[0].message
+    #answer = re.search(r"content='(.*?)'", str(response))
+    
+
+    #print(answer)
+    #MSG_LIST = str(answer.content.strip()).split('\n')
+    #print(MSG_LIST)
+    #msg_print= ''
+    #for i in MSG_LIST:
+    #    print(i) 
+    
+
+    #print(answer)
+    #ANSWER = str(answer.content.strip())
+    #MSG_LIST = str(answer.content.strip()).split('\n')
+    #print(MSG_LIST)
+
+    return jsonify({"answer": str(answer)})
+
 
 
 def getMsgList():
